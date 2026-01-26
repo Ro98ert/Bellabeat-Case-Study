@@ -135,30 +135,7 @@ In this phase, I explore user behavior regarding activity, calories, sleep, and 
 ## 1. Overview of Daily Activity
 First, I examine the distribution of daily steps to understand the baseline activity level of the user base.
 
-(Figure 1: Distribution of Daily Steps vs. the 10k Goal)[<img width="961" height="574" alt="image" src="https://github.com/user-attachments/assets/e586beb9-5767-4a20-b134-7ef61602f217" />]
-
-```{r daily-steps-viz, message=FALSE, warning=FALSE}
-# Summary statistics
-daily_activity %>%
-  summarise(
-    mean_steps = mean(total_steps),
-    median_steps= median(total_steps),
-    max_steps = max(total_steps)
-    )
-
-# Histogram with 10k Step Goal Marker
-ggplot(daily_activity, aes(x = total_steps)) +
-  geom_histogram(binwidth = 1000, fill = "#69b3a2", color = "white") +
-  geom_vline(aes(xintercept = 10000), color = "red", linetype = "dashed", size = 1) +
-  annotate("text", x = 12000, y = 50, label = "10k Step Goal", color = "red") +
-  theme_minimal() +
-  labs(
-    title = "Distribution of Daily Steps",
-    subtitle = "Red line indicates the recommended 10,000 steps/day",
-    x = "Total Steps",
-    y = "Count of Days"
-  )
-```
+Figure 1: Distribution of Daily Steps vs. the 10k Goal<img width="961" height="574" alt="image" src="https://github.com/user-attachments/assets/e586beb9-5767-4a20-b134-7ef61602f217" />
 
 **Insights:**
 
@@ -167,29 +144,7 @@ ggplot(daily_activity, aes(x = total_steps)) +
 ## 2. Activity Intensity: Sedentary vs Active
 To understand how users spend their day, I analyze the breakdown of activity intensity.
 
-```{r}
-# Reshape data for plotting
-activity_long <- daily_activity %>% 
-  pivot_longer(
-    cols = c(very_active_minutes, fairly_active_minutes, lightly_active_minutes, sedentary_minutes),
-    names_to = "activity_type",
-    values_to = "minutes"
-  ) %>% 
-  mutate(activity_type = factor(activity_type, levels = c("sedentary_minutes", "lightly_active_minutes", "fairly_active_minutes", "very_active_minutes")))
-
-# Bar chart
-ggplot(activity_long, aes(x = activity_type, y = minutes, fill = activity_type)) +
-  geom_bar(stat = "summary", fun = "mean") +
-  scale_fill_brewer(palette = "Spectral") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(
-    title = "Average Minutes Spent in Each Activity Category",
-    x = "Activity Type",
-    y = "Average Minutes",
-    fill = "Category"
-  )
-```
+Figure 2: Average Minutes Spent in Each Activity Category<img width="961" height="574" alt="image" src="https://github.com/user-attachments/assets/bfe8f4f5-c092-422c-84d2-b2cf88bb0d59" />
 
 **Insights:**
 
@@ -198,17 +153,7 @@ ggplot(activity_long, aes(x = activity_type, y = minutes, fill = activity_type))
 ## 3. Calorie Burn vs Step Count
 I analyze the correlation between steps taken and calories burned to confirm the efficacy of step-based goals.
 
-```{r}
-ggplot(daily_activity, aes(x = total_steps, y = calories)) +
-  geom_point(alpha = 0.5, color = "#4682B4") +
-  geom_smooth(method = "lm", color = "darkred", se = FALSE) +
-  theme_minimal() +
-  labs(
-    title = "Relationship: Daily Steps vs Calories Burned",
-    x = "Total Steps",
-    y = "Calories"
-  )
-```
+Figure 3: Linear Relationship between Daily Steps and Calories<img width="958" height="574" alt="image" src="https://github.com/user-attachments/assets/9315dec9-c9e5-48d0-86e8-b9d5774ea0a3" />
 
 **Insights:**
 
@@ -217,27 +162,7 @@ ggplot(daily_activity, aes(x = total_steps, y = calories)) +
 ## 4. Weekly Activity Habits
 Do users slack off on weekends? I visualize activity trends across the week.
 
-```{r}
-# 1. Create weekday column and order it
-daily_activity <- daily_activity %>% 
-  mutate(weekday = wday(activity_date, label = TRUE, abbr = TRUE))
-
-# 2. Aggregate
-weekday_steps <- daily_activity %>% 
-  group_by(weekday) %>% 
-  summarise(avg_steps = mean(total_steps))
-
-# 3. Plot
-ggplot(weekday_steps, aes(x = weekday, y = avg_steps, group = 1)) +
-  geom_line(color = "#69b3a2", size = 1) +
-  geom_point(color = "#69b3a2", size = 3) +
-  theme_minimal() +
-  labs(
-    title = "Average Steps by Day of the Week",
-    y = "Average Steps",
-    x = "Weekday"
-  )
-```
+Figure 4: Average Steps by Day of the Week<img width="953" height="571" alt="image" src="https://github.com/user-attachments/assets/27b9edbf-b8ca-4ef9-8c85-db0bd571bb41" />
 
 **Insights:**
 
@@ -246,25 +171,7 @@ Activity is relatively consistent, though Tuesday shows a suspicious dip (likely
 ## 5. Sleep Analysis
 I examine sleep duration to see if users are meeting the recommended 7-9 (420-540 mins.)
 
-```{r}
-# Aggregate minute sleep to daily level
-sleep_daily <- minute_sleep %>% 
-  mutate(sleep_date = as_date(sleep_time)) %>% 
-  group_by(id, sleep_date) %>% 
-  summarise(minutes_asleep = n(), .groups = "drop")
-
-# Histogram
-ggplot(sleep_daily, aes(x = minutes_asleep)) +
-  geom_histogram(binwidth = 30, fill = "#8da0cb", color = "white") +
-  geom_vline(xintercept = 420, linetype="dashed", color="red") + # 7 hours
-  annotate("text", x = 380, y = 50, label = "7 hrs", color = "red") +
-  theme_minimal() +
-  labs(
-    title = "Distribution of Nightly Sleep",
-    x = "Minutes Asleep",
-    y = "Count of Nights"
-  )
-```
+Figure 5: Distribution of Nightly Sleep Duration<img width="958" height="571" alt="image" src="https://github.com/user-attachments/assets/b93f9491-b626-416e-87cc-d85f96dda9fa" />
 
 **Insights:**
 
@@ -274,53 +181,11 @@ ggplot(sleep_daily, aes(x = minutes_asleep)) +
 ## 6. Sleep vs Activity
 Does sleeping more lead to more activity the next day? I merge the datasets to find out.
 
-```{r}
-# Join tables
-daily_activity_sleep <- daily_activity %>% 
-  rename(sleep_date = activity_date) %>% 
-  inner_join(sleep_daily, by = c("id", "sleep_date"))
-
-# Scatter plot
-ggplot(daily_activity_sleep, aes(x = minutes_asleep, y = total_steps)) +
-  geom_point(alpha = 0.4, color = "purple") +
-  geom_smooth(method = "lm", color = "black") +
-  theme_minimal() +
-  labs(
-    title = "Correlation: Sleep Duration vs. Next Day Steps",
-    x = "Minutes Asleep",
-    y = "Total Steps"
-  )
-```
+Figure 6: Correlation between Sleep Duration and Next Day Steps<img width="960" height="572" alt="image" src="https://github.com/user-attachments/assets/39bea436-e29c-4f44-95c8-9c80d81ecf36" />
 
 **Insights:**
 
   * The relationship is weak (flat trend line). This suggests that simply sleeping more doesn't automatically result in more movement; users need separate nudges for both behaviors.
-
-# User Sementation
-Finally, I categorize days into activity levels to quantify how often users are "active enough."
-
-```{r}
-# 1. Categorize
-daily_activity <- daily_activity %>% 
-  mutate(activity_level = case_when(
-    total_steps < 5000 ~ "Sedentary",
-    total_steps < 10000 ~ "Lightly Active",
-    TRUE ~ "Active"
-  )) %>% 
-  mutate(activity_level = factor(activity_level, levels = c("Sedentary", "Lightly Active", "Active")))
-
-# 2. Plot
-ggplot(daily_activity, aes(x = activity_level, fill = activity_level)) +
-  geom_bar() +
-  scale_fill_manual(values = c("Sedentary" = "#e76f51", "Lightly Active" = "#e9c46a", "Active" = "#2a9d8f")) +
-  theme_minimal() +
-  labs(
-    title = "Frequency of Activity Levels",
-    x = "Activity Category",
-    y = "Number of Days",
-    fill = "Level"
-  )
-```
 
 # Share
 
