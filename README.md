@@ -1,6 +1,7 @@
 # Bellabeat Smart Device Usage Analysis 🏃‍♀️
 
 ## Project Overview
+
 **Goal:** Analyze smart device usage data to identify trends and guide marketing strategies for Bellabeat, a high-tech wellness company for women.
 **Role:** Data Analyst
 
