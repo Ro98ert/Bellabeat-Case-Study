@@ -1,25 +1,3 @@
----
-title: "Bellabeat Case Study: Smart Device Usage Analysis"
-subtitle: "Google Data Analytics Capstone Project"
-author: "Amartisoaei Robert"
-date: "`r Sys.Date()`"
-output:
-  pdf_document:
-    toc: true
-  html_document:
-    theme: flatly
-    toc: true
-    toc_float: true
-    highlight: tango
-    code_folding: show
-    number_sections: false
----
-
-```{r setup, include=FALSE}
-# Global constraints to ensure a clean final report
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 10, fig.height = 6)
-```
-
 # Introduction
 
 This case study analyzes smart-device usage data to support **Bellabeat**, a wellness technology company that designs health-focused products for women. The goal of this project is to explore how users engage with their activity trackers and identify behavioral patterns that can inform Bellabeat’s product development and marketing strategy.
