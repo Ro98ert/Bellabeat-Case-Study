@@ -25,7 +25,7 @@ Located in: [Path](https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b
     * Aggregating second-level heart rate data to minute-level.
 
 ### 2. Analysis & Visualization (R)
-Located in: (Path)[https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/R]
+Located in: [Path](https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/R)
 * **`bellabeat_workflow.R`**: A unified script that imports the cleaned SQL outputs to perform:
     * **Behavioral Segmentation:** Categorizing users by activity levels.
     * **Correlation Analysis:** Steps vs. Calories, Sleep vs. Activity.
