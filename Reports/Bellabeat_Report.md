@@ -166,7 +166,7 @@ Figure 4: Average Steps by Day of the Week<img width="953" height="571" alt="ima
 
 **Insights:**
 
-Activity is relatively consistent, though Tuesday shows a suspicious dip (likely a data syncing issue identified in the cleaning phase) rather than user behavior.
+* Activity is relatively consistent, though Tuesday shows a suspicious dip (likely a data syncing issue identified in the cleaning phase) rather than user behavior.
 
 ## 5. Sleep Analysis
 I examine sleep duration to see if users are meeting the recommended 7-9 (420-540 mins.)
