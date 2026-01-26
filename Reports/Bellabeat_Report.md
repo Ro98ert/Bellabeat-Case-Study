@@ -134,7 +134,7 @@ In this phase, I explore user behavior regarding activity, calories, sleep, and 
 
 ## 1. Overview of Daily Activity
 First, I examine the distribution of daily steps to understand the baseline activity level of the user base.
-<img width="961" height="574" alt="image" src="https://github.com/user-attachments/assets/e586beb9-5767-4a20-b134-7ef61602f217" />
+(Figure 1: Distribution of Daily Steps vs. the 10k Goal)[<img width="961" height="574" alt="image" src="https://github.com/user-attachments/assets/e586beb9-5767-4a20-b134-7ef61602f217" />]
 
 ```{r daily-steps-viz, message=FALSE, warning=FALSE}
 # Summary statistics
