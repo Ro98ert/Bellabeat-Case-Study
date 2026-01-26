@@ -17,7 +17,7 @@ This project leverages a **multi-tool workflow** to maximize efficiency and data
 The code is organized to follow the data processing flow:
 
 ### 1. Data Processing (SQL)
-Located in: `[https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/SQL]`
+Located in: `[Path](https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/SQL)`
 * **Sequenced Scripts:** The SQL scripts are numbered (e.g., `01_process_daily_activity.sql`) to indicate the execution order.
 * **Key Actions:**
     * Standardizing date/time formats across tables.
