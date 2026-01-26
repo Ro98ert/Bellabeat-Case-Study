@@ -35,8 +35,8 @@ Located in: [Path](https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b
 
 The full narrative, including charts and strategic recommendations, can be found here:
 
-* 📄 **Executive Report (PDF):** [https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Case_Study.pdf]
-* 📝 **Analysis Log (Markdown):** [https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Report.md]
+* 📄 **Executive Report (PDF):** [Report](https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Case_Study.pdf)
+* 📝 **Analysis Log (Markdown):** [Report](https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Report.md)
 
 ---
 
