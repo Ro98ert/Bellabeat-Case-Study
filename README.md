@@ -17,7 +17,7 @@ This project leverages a **multi-tool workflow** to maximize efficiency and data
 The code is organized to follow the data processing flow:
 
 ### 1. Data Processing (SQL)
-Located in: `[path]`
+Located in: `[https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/SQL]`
 * **Sequenced Scripts:** The SQL scripts are numbered (e.g., `01_process_daily_activity.sql`) to indicate the execution order.
 * **Key Actions:**
     * Standardizing date/time formats across tables.
@@ -25,7 +25,7 @@ Located in: `[path]`
     * Aggregating second-level heart rate data to minute-level.
 
 ### 2. Analysis & Visualization (R)
-Located in: `[path]`
+Located in: `[https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/R]`
 * **`bellabeat_workflow.R`**: A unified script that imports the cleaned SQL outputs to perform:
     * **Behavioral Segmentation:** Categorizing users by activity levels.
     * **Correlation Analysis:** Steps vs. Calories, Sleep vs. Activity.
@@ -35,8 +35,8 @@ Located in: `[path]`
 
 The full narrative, including charts and strategic recommendations, can be found here:
 
-* 📄 **Executive Report (PDF):** [path]
-* 📝 **Analysis Log (Markdown):** [path]
+* 📄 **Executive Report (PDF):** [https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Case_Study.pdf]
+* 📝 **Analysis Log (Markdown):** [https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Report.md]
 
 ---
 
