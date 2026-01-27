@@ -181,7 +181,8 @@ Figure 5: Distribution of Nightly Sleep Duration<img width="958" height="571" al
 ## 6. Sleep vs Activity
 Does sleeping more lead to more activity the next day? I merge the datasets to find out.
 
-Figure 6: Correlation between Sleep Duration and Next Day Steps<img width="960" height="572" alt="image" src="https://github.com/user-attachments/assets/39bea436-e29c-4f44-95c8-9c80d81ecf36" />
+Figure 6: Correlation between Sleep Duration and Next Day Steps<img width="1055" height="607" alt="image" src="https://github.com/user-attachments/assets/3ef09ffa-a501-45aa-a903-3f0ecba82ae9" />
+
 
 **Insights:**
 
