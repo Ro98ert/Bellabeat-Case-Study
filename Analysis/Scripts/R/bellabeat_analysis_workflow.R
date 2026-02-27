@@ -24,7 +24,7 @@ library(naniar)
 # ----------------------------
 # Data path (Desktop)
 # ----------------------------
-data_path <- "E:/Docs/Coursera/Case Study 2_ How-can-a-wellness-technology-company-play-it-smart/R_Project_local/Bellabeat/data_clean/SQL"
+data_path <- "../Case Study 2_ How-can-a-wellness-technology-company-play-it-smart/R_Project_local/Bellabeat/data_clean/SQL"
 
 # ----------------------------
 # Import data
