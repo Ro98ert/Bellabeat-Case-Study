@@ -1,252 +1,95 @@
-# Introduction
+# Bellabeat Smart Device Usage Analysis
 
-This case study analyzes smart-device usage data to support **Bellabeat**, a wellness technology company that designs health-focused products for women. The goal of this project is to explore how users engage with their activity trackers and identify behavioral patterns that can inform Bellabeat’s product development and marketing strategy.
+## Project Overview
+This case study analyzes smart device usage data to explore how consumers interact with fitness trackers in their daily lives. The goal is to identify behavioral patterns related to activity, sleep, and heart rate that could help inform Bellabeat’s product and marketing strategy.
 
-By examining activity, sleep, and heart-rate data from Fitbit users, I aim to uncover meaningful insights about daily habits, wellness routines, and opportunities for Bellabeat to help users improve their overall health.
+## 1. Business Task
+Bellabeat wants to better understand how people use smart wellness devices in everyday life. This analysis aims to identify usage patterns that could support data-informed marketing recommendations.
 
-This analysis follows the standard analytics process: **Ask, Prepare, Process, Analyze, Share, and Act**.
+## 2. Data Source
+The dataset used for this analysis is the **Fitbit Fitness Tracker Data**, a public dataset published on Kaggle by Mobius. It contains activity, sleep, and heart-rate data from **30 consenting Fitbit users**.
 
-# Ask
+This dataset is used as a proxy for general smart device behavior. It is not Bellabeat’s own customer data.
 
-### Business Task
-**Bellabeat's goal** is to grow as efficiently as possible in the global smart device market by offering products and services tailored to customer needs.
+Main tables used in this project include:
+- daily activity data
+- sleep logs
+- weight logs
+- hourly activity tables
+- minute-level activity tables
+- second-level heart-rate data
 
-To support this goal, I will analyze smart device usage data to understand how consumers use their devices in their daily lives. The insights from this analysis will help the marketing team design targeted strategies for Bellabeat’s products and services based on users’ behavior patterns.
+## 3. Data Preparation
+The project used **SQL (BigQuery)** for cleaning and transformation, and **R (Tidyverse)** for analysis and visualization.
 
-### Key Stakeholders
-* **Urška Sršen** – Cofounder and Chief Creative Officer
-* **Sando Mur** – Cofounder and key member of the executive team
-* **Bellabeat Marketing Analytics Team** – Responsible for data-driven strategic recommendations
+Main preparation steps:
+- standardized column names into a consistent format
+- filtered out invalid or non-wear records such as zero-calorie days
+- removed duplicates from granular activity tables
+- parsed inconsistent date and time fields into standard timestamp formats
+- converted minute-level MET values to usable units
+- aggregated second-level heart-rate data to the minute level for easier analysis
 
-### Success Metrics
-1.  Identify key usage patterns and behavioral differences among users.
-2.  Present clear and accurate visualizations of activity and habits.
-3.  Provide at least three actionable recommendations for Bellabeat’s marketing strategy.
+These steps produced cleaned and consistent datasets ready for exploratory analysis.
 
-# Prepare
+## 4. Analysis Approach
+The analysis focused on several key questions:
+1. How active are users on a typical day?
+2. How much time do users spend in sedentary versus active states?
+3. What is the relationship between steps and calories burned?
+4. Are there visible trends across days of the week?
+5. How does sleep relate to next-day activity?
 
-## Data Source
-The dataset used for this analysis is the **Fitbit Fitness Tracker Data**, a public dataset published on Kaggle by user *Mobius*. It contains personal fitness tracker information from **30 consenting Fitbit users**, including daily and minute-level data regarding physical activity, sleep, and heart rate.
+To answer these questions, I used:
+- distribution analysis
+- correlation analysis
+- weekday trend analysis
+- sleep and activity comparisons
 
-> **Note:** This dataset is not collected by Bellabeat directly. It serves as a **proxy** to understand general smart device usage patterns among users similar to Bellabeat’s target audience.
+## 5. Key Findings
 
-## Data Structure
-The data is split into multiple CSV files. For this analysis, I focus on the following tables, which are linked by the unique `Id` column:
+### Daily Activity
+A large share of users did not consistently reach the 10,000-step benchmark. The distribution of daily steps suggests that activity levels vary widely, but lower-activity days are common.
 
-* **Daily Data:** `daily_activity` (Steps, intensity, calories)
-* **Sleep Data:** `minute_sleep` (Sleep logs)
-* **Weight Data:** `weight_log` (Weight and BMI)
-* **Hourly Data:** `hourly_steps`, `hourly_calories`, `hourly_intensities`
-* **Minute/Second Data:** `heartrate_seconds`, `minute_steps`, etc.
+### Sedentary Time
+Users spent a substantial portion of their day in sedentary minutes, with relatively little time in higher activity categories. This suggests that inactivity is an important behavioral pattern in the dataset.
 
-## ROCCC Assessment
-To ensure the data is suitable for analysis, I performed a ROCCC assessment:
+### Steps and Calories
+Daily steps and calories burned showed a strong positive relationship. This supports the use of steps as a practical and easy-to-understand activity metric.
 
-| Criterion | Status | Assessment |
-| :--- | :--- | :--- |
-| **Reliable** | Medium | Data is machine-generated (Fitbit), so it is accurate, but the sample size (30 users) is small. |
-| **Original** | Low | Third-party dataset (Kaggle/Mobius), not collected directly by Bellabeat. |
-| **Comprehensive** | Medium | Includes deep activity/sleep/heart metrics, but lacks demographic data (age, gender). |
-| **Current** | Low | Data is several years old; usage habits may have evolved. |
-| **Cited** | High | Properly cited as “Fitbit Fitness Tracker Data” on Kaggle. |
+### Weekly Patterns
+Activity levels were generally similar across the week, although some day-level fluctuations may reflect logging inconsistencies rather than meaningful behavioral differences.
 
-## Environment Setup and Data Import
+### Sleep Patterns
+Many recorded sleep sessions fell within a typical 7 to 8.5 hour range. However, there was no strong relationship between sleep duration and next-day step count in this analysis.
 
-I utilize the **SQL**  for data cleaning, and **tidyverse** ecosystem for analysis, and visualization. In this step, I load the necessary libraries, define file paths, and import the CSV files into data frames. I also perform immediate checks to verify that user IDs overlap across the main tables, ensuring they can be joined later.
+## 6. Recommendations
+Based on the patterns observed in this dataset, the following recommendations could be explored for Bellabeat:
 
-# Process
+1. **Promote movement through small, achievable goals**  
+   Since many users appear to be lightly active or sedentary, Bellabeat could emphasize simple daily movement goals rather than high-performance fitness messaging.
 
-**Tool Selection:** SQL (BigQuery) was utilized for data extraction, cleaning, and strict schema validation due to the dataset's size and the necessity for granular timestamp manipulation. R is reserved for the subsequent Exploratory Data Analysis (EDA) and visualization phases.
+2. **Use inactivity alerts or movement reminders**  
+   Long sedentary periods suggest an opportunity for app notifications or device features that encourage short breaks and light movement.
 
-**Data Integrity & Cleaning Log:** The following processing steps were executed to resolve data quality issues identified during the "Prepare" phase.
+3. **Keep sleep and activity as separate wellness pillars**  
+   Because sleep duration did not show a strong link with next-day activity, Bellabeat may benefit from treating sleep support and movement support as separate behavior areas.
 
-## 1. Daily Level Data & Feature Selection
+4. **Highlight steps as a simple health metric**  
+   The positive relationship between steps and calories supports clear step-based messaging for users who want a practical and accessible measure of activity.
 
-* **Logic Applied:**
+## 7. Limitations
+This case study has several limitations:
+- the dataset includes only 30 users
+- the data is not collected directly from Bellabeat users
+- the dataset lacks demographic detail needed to match Bellabeat’s target audience more closely
+- the data is older and may not fully reflect current wearable usage behavior
 
-    * `daily_activity`: Filtered out records where `Calories = 0` (indicating the device was not worn).
-    * `weight_log`: Excluded the `Fat` column due to >90% null values (feature selection).
-    * **Standardization:** Converted CamelCase headers to snake_case.
+These limitations mean the results should be treated as exploratory rather than broadly representative.
 
-## 2. Granular Timestamp Parsing & Normalization
-
-**Objective:** Standardize time-series data across Hourly and Minute-level datasets.
-
-* **Logic Applied:**
-
-    * **String Parsing:** Applied `TRIM()` and `PARSE_TIMESTAMP()` to correct formatting inconsistencies in raw string dates.
-    * **Deduplication:** Applied `DISTINCT` across all granular tables (`hourly_steps`, `minute_sleep`, `minute_METs`, etc.) to ensure unique composite keys (User ID + Time).
-    * **Unit Conversion:** Converted `minute_METs` by dividing by 10 to retrieve the actual metabolic equivalent.
-
-SQL Query Used:
-
-```{r SQL_clean_MET_steps, eval=FALSE, include=TRUE}
-CLEANING SAMPLE: TIMESTAMP PARSING (HOURLY/MINUTE)
--- Example: Minute METs (Parsing + Unit Conversion)
-CREATE OR REPLACE TABLE `bellabeat_clean.minute_MET` AS
-SELECT DISTINCT
-  Id AS id,
-  PARSE_TIMESTAMP('%m/%d/%Y %I:%M:%S %p', TRIM(ActivityMinute)) AS activity_minute,
-  SAFE_CAST(METs AS FLOAT64)/10 AS METs
-FROM `bellabeat_raw.minute_MET`;
-```
-
-## 3. Physiological Data Aggregation
-
-**Objective:** Optimize heart rate data for analysis by reducing granularity without losing trend fidelity.
-
-* **Logic Applied:**
-
-    * **Downsampling:** Raw heart rate data (`heartrate_seconds`) contained second-level noise. Data was aggregated to minute-level averages to align with `minute_intensities` and `minute_steps`.
-
-```{r SQL_clean_agg, eval=FALSE, include=TRUE}
-CLEANING SAMPLE: AGGREGATION
--- Aggregating second-level heart rate to minute-level
-CREATE TABLE `bellabeat_clean.heartrate_min_avg` AS
-SELECT
-  id,
-  DATETIME_TRUNC(time, MINUTE) AS heart_rate_minute,
-  AVG(heart_rate) AS avg_heart_rate
-FROM `bellabeat_clean.heartrate_seconds`
-GROUP BY id, heart_rate_minute;
-```
-
-## 4. Verification & Validation
-
-Post-processing, the following validation checks were run against all clean tables:
-
-1. **Row Counts:** Confirmed sample size consistency between Raw and Clean tables.
-2. **Null Checks:** Verified zero NULLs in primary keys (`id`, `activity_date/time`).
-3. **Logical Consistency:** Verified `TotalIntensity` vs `AverageIntensity` mathematical accuracy.
-4. **Anomaly Detection:** Confirmed minute-level calories range (Min: 0, Max: >0) and sleep states (1, 2, 3).
-
-**Outcome:** The data is now stored in the `bellabeat_clean` SQL dataset. It is structurally consistent, free of duplicates, and formatted for direct ingestion into R.
-
-**Summary of the Process Phase**
-
-* Tools Used: SQL (BigQuery) for cleaning; R (Tidyverse) for analysis.
-* Key Actions: Removed duplicates, parsed dates into standard formats, and filtered out non-wear days (Zero Calories).
-* Outcome: Clean, standardized datasets ready for exploration.
-
-# Analyze
-
-In this phase, I explore user behavior regarding activity, calories, sleep, and heart rate to uncover patterns relevant to Bellabeat’s marketing strategy.
-
-## 1. Overview of Daily Activity
-First, I examine the distribution of daily steps to understand the baseline activity level of the user base.
-
-Figure 1: Distribution of Daily Steps vs. the 10k Goal<img width="961" height="574" alt="image" src="https://github.com/user-attachments/assets/e586beb9-5767-4a20-b134-7ef61602f217" />
-
-**Insights:**
-
-  * The distribution is right-skewed. While some users achieve high activity, a significant portion falls below the 10,000-step recommendation, indicating a potential market for motivation-based features.
-
-## 2. Activity Intensity: Sedentary vs Active
-To understand how users spend their day, I analyze the breakdown of activity intensity.
-
-Figure 2: Average Minutes Spent in Each Activity Category<img width="961" height="574" alt="image" src="https://github.com/user-attachments/assets/bfe8f4f5-c092-422c-84d2-b2cf88bb0d59" />
-
-**Insights:**
-
-  * Users are predominantly sedentary. This highlights a massive opportunity for Bellabeat to introduce "movement breaks" or inactivity alerts.
-
-## 3. Calorie Burn vs Step Count
-I analyze the correlation between steps taken and calories burned to confirm the efficacy of step-based goals.
-
-Figure 3: Linear Relationship between Daily Steps and Calories<img width="958" height="574" alt="image" src="https://github.com/user-attachments/assets/9315dec9-c9e5-48d0-86e8-b9d5774ea0a3" />
-
-**Insights:**
-
-  * As expected, there is a strong positive correlation. This confirms that step-counting is a reliable proxy for calorie expenditure in marketing messaging.
-
-## 4. Weekly Activity Habits
-Do users slack off on weekends? I visualize activity trends across the week.
-
-Figure 4: Average Steps by Day of the Week<img width="953" height="571" alt="image" src="https://github.com/user-attachments/assets/27b9edbf-b8ca-4ef9-8c85-db0bd571bb41" />
-
-**Insights:**
-
-* Activity is relatively consistent, though Tuesday shows a suspicious dip (likely a data syncing issue identified in the cleaning phase) rather than user behavior.
-
-## 5. Sleep Analysis
-I examine sleep duration to see if users are meeting the recommended 7-9 (420-540 mins.)
-
-Figure 5: Distribution of Nightly Sleep Duration<img width="958" height="571" alt="image" src="https://github.com/user-attachments/assets/b93f9491-b626-416e-87cc-d85f96dda9fa" />
-
-**Insights:**
-
-  * The distribution of sleep duration is centered slightly **above the 7-hour (420-minute) mark**. This suggests that for the majority of recorded nights, the subjects are achieving a healthy amount of sleep (typically between 7 and 8.5 hours).
-  * There is a small, distinct cluster of records on the far left (under 200 minutes or ~3 hours). These likely represent naps or brief periods of rest, rather than full nights of sleep, distinct from the main sleeping pattern.
-
-## 6. Sleep vs Activity
-Does sleeping more lead to more activity the next day? I merge the datasets to find out.
-
-Figure 6: Correlation between Sleep Duration and Next Day Steps<img width="1055" height="607" alt="image" src="https://github.com/user-attachments/assets/3ef09ffa-a501-45aa-a903-3f0ecba82ae9" />
-
-
-**Insights:**
-
-  * The relationship is weak (flat trend line). This suggests that simply sleeping more doesn't automatically result in more movement; users need separate nudges for both behaviors.
-
-# Share
-
-## Key Findings & Insights
-Based on the analysis of 30 Fitbit users, I have identified six key trends that directly impact Bellabeat's marketing strategy.
-
-### 1. Sedentary Lifestyles Prevail
-* **Observation:** The majority of users do not reach the recommended 10,000 steps per day.
-* **Data:** Most days fall into the **"Sedentary"** or **"Lightly Active"** categories.
-* **Implication:** There is a significant market opportunity for features that encourage small, incremental movements rather than intense athleticism.
-
-### 2. Steps Drive Calorie Burn
-* **Observation:** There is a strong, positive correlation between daily steps and calories burned.
-* **Implication:** Step-based goals are a scientifically valid and easily understood metric for users aiming to manage their weight.
-
-### 3. High Sedentary Time
-* **Observation:** Users spend a disproportionate amount of their waking hours in "Sedentary Minutes," with very limited "Very Active" time.
-* **Implication:** Users may not be aware of how inactive they are during the workday, suggesting a need for **"smart nudges"**.
-
-### 4. Sleep Deprivation is less common
-* **Observation:** A large portion of sleep records show durations between **7 to 8.5 hours**, keeping it stable.
-* **Implication:** Sleep wellness is a major area for consistency where Bellabeat can offer unique value through coaching and engaging messages.
-
-### 5. Sleep Does Not Guarantee Activity
-* **Observation:** There is no strong correlation between sleep duration and the next day's step count.
-* **Implication:** Rest alone isn't enough to motivate movement. Bellabeat needs to treat **Sleep** and **Activity** as two separate pillars that require distinct motivation strategies.
-
-### 6. Data Consistency Gaps
-* **Observation:** I observed unusual dips in activity (**specifically on Tuesdays**) and zero-calorie days.
-* **Implication:** These are likely **data syncing issues** or **non-wear** times. Improvements in device comfort or battery life could reduce these data gaps.
-
-# Act
-
-## Recommendations
-Based on the data findings and Bellabeat's goal of empowering women through wellness, I propose the following actionable strategies:
-
-### 1. Product & App Features
-* **"Sedentary Nudges":** Since users spend significant time inactive, implement **"smart alerts"** that trigger after 60 minutes of inactivity. These should suggest short, achievable actions (e.g., "Time for a 2-minute stretch").
-* **Daily Wellness Score:** Develop a composite metric that combines **Steps + Sleep + Active Minutes**. This gives users a holistic view of their health rather than focusing solely on weight or calories, aligning with Bellabeat's brand identity.
-* **Sleep Coaching:** Given the prevalence of keeping consistency for sleep (7-8.5 hours), introducing a "Sleep Hygiene" module and engaging notifications. This could include bedtime reminders and visualization of how sleep consistency impacts their "Wellness Score".
-* **Sync Reminders:** To address data gaps (like the Tuesday dip), add push notifications encouraging users to sync their device if no data is detected by mid-day.
-
-### 2. Marketing Strategy
-* **Campaign: "Small Steps, Big Impact":** Use the strong step-calorie correlation to market the idea that users don't need to be athletes to get fit. Focus messaging on hitting the 10k mark through casual walking.
-* **Campaign: "Rest to Recharge":** Position Bellabeat devices not just as activity trackers, but as "Rest Managers." Highlight the sleep tracking features to appeal to the demographic that feels overworked and sleep-deprived.
-
-## Limitations
-To maintain analytical rigor, it is important to acknowledge the limitations of this case study:
-
-* **Sample Size:** Only 30 users were analyzed, which may not be statistically representative of the global population.
-* **Demographics:** The dataset lacks gender and age information. As Bellabeat focuses on women, assuming these users are female proxies introduces risk.
-* **Data Age:** The dataset is several years old; post-pandemic wearable usage behavior may differ significantly.
-
-## Future Work
-To refine these recommendations, Bellabeat should consider:
-
-1.  **First-Party Data Collection:** Launch an opt-in study with current Bellabeat users to gather demographic-specific data.
-2.  **Longitudinal Analysis:** Analyze usage over a full year to identify seasonal trends (e.g., do users drop off in winter?).
-3.  **Qualitative Research:** Conduct user surveys to understand *why* users stop wearing the device on certain days.
-
----
-**Report generated on:** `r Sys.Date()`
-**Author:** Amartisoaei Robert
+## 8. Future Work
+Possible next steps include:
+- validating the findings with Bellabeat-specific or more recent data
+- analyzing longer time periods to identify seasonal patterns
+- combining usage data with survey feedback to better understand user motivation
+- testing whether certain reminder types are more effective for low-activity users
