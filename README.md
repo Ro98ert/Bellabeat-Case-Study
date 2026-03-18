@@ -73,6 +73,7 @@ Available reports:
 
 ## Data Source
 - **Dataset:** [Fitbit Fitness Tracker Data (Kaggle)](https://www.kaggle.com/arashnic/fitbit)
+  
 The raw data files are not included in this repository. The analysis assumes the source files were loaded into a SQL environment before processing.
 
 ## Limitations
