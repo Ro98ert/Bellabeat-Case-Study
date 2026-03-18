@@ -1,45 +1,80 @@
-# Bellabeat Smart Device Usage Analysis 🏃‍♀️
+# Bellabeat Smart Device Usage Analysis
 
-## Project Overview
+## Project Summary
+This project analyzes smart device usage data to identify behavioral patterns that could help inform Bellabeat’s marketing strategy. The analysis focuses on activity, sleep, and heart rate trends using Fitbit data as a proxy for consumer wellness tracking behavior.
 
-* **Goal:** Analyze smart device usage data to identify trends and guide marketing strategies for Bellabeat, a high-tech wellness company for women.
-* **Role:** Data Analyst
+## Business Question
+How do users engage with smart devices in their daily routines, and which patterns could help guide Bellabeat’s product positioning and marketing decisions?
 
-## ⚙️ Methodology: Hybrid Pipeline
+## Tools Used
+- **SQL (BigQuery)** — data cleaning, validation, transformation, and preprocessing
+- **R (Tidyverse)** — exploratory analysis, summary statistics, and visualization
 
-This project leverages a **multi-tool workflow** to maximize efficiency and data integrity:
+## Workflow
+This project uses a hybrid workflow:
+- **SQL** was used to clean and standardize the raw datasets
+- **R** was used to analyze trends and create visual outputs
 
-1.  **SQL (BigQuery):** Used for heavy lifting—data cleaning, strict schema validation, and timestamp normalization.
-2.  **R (Tidyverse):** Used for exploratory data analysis (EDA), statistical summary, and visualization.
+The workflow includes:
+- processing daily, hourly, minute-level, and heart-rate data
+- standardizing timestamps and column names
+- filtering invalid or non-wear records
+- exploring activity, sleep, and calorie patterns
 
-## 📂 Repository Structure
+## Repository Contents
 
-The code is organized to follow the data processing flow:
+### 1. SQL Processing Scripts
+**Location:** [`Analysis/Scripts/SQL/`](./Analysis/Scripts/SQL/)
 
-### 1. Data Processing (SQL)
-Located in: [Path](https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/SQL)
-* **Sequenced Scripts:** The SQL scripts are numbered (e.g., `01_process_daily_activity.sql`) to indicate the execution order.
-* **Key Actions:**
-    * Standardizing date/time formats across tables.
-    * Removing nulls and non-wear days (zero calories).
-    * Aggregating second-level heart rate data to minute-level.
+These scripts prepare the raw Fitbit tables for analysis, including:
+- date and timestamp normalization
+- duplicate removal
+- non-wear filtering
+- aggregation of second-level heart rate data
 
-### 2. Analysis & Visualization (R)
-Located in: [Path](https://github.com/Ro98ert/Bellabeat-Case-Study/tree/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Analysis/Scripts/R)
-* **`bellabeat_workflow.R`**: A unified script that imports the cleaned SQL outputs to perform:
-    * **Behavioral Segmentation:** Categorizing users by activity levels.
-    * **Correlation Analysis:** Steps vs. Calories, Sleep vs. Activity.
-    * **Temporal Trends:** Activity patterns by day of the week.
+Key files:
+- [`01_process_daily_activity.sql`](./Analysis/Scripts/SQL/01_process_daily_activity.sql)
+- [`02_process_heartrate_seconds.sql`](./Analysis/Scripts/SQL/02_process_heartrate_seconds.sql)
+- [`03_process_hourly_calories.sql`](./Analysis/Scripts/SQL/03_process_hourly_calories.sql)
+- [`04_process_hourly_intensities.sql`](./Analysis/Scripts/SQL/04_process_hourly_intensities.sql)
+- [`05_process_hourly_steps.sql`](./Analysis/Scripts/SQL/05_process_hourly_steps.sql)
+- [`06_process_minute_MET.sql`](./Analysis/Scripts/SQL/06_process_minute_MET.sql)
+- [`07_process_minute_calories.sql`](./Analysis/Scripts/SQL/07_process_minute_calories.sql)
+- [`08_process_minute_intensities.sql`](./Analysis/Scripts/SQL/08_process_minute_intensities.sql)
+- [`09_process_minute_sleep.sql`](./Analysis/Scripts/SQL/09_process_minute_sleep.sql)
+- [`10_process_minute_steps.sql`](./Analysis/Scripts/SQL/10_process_minute_steps.sql)
+- [`11_process_weight_logs.sql`](./Analysis/Scripts/SQL/11_process_weight_logs.sql)
 
-## 📊 Final Reports
+### 2. R Analysis Workflow
+**Location:** [`Analysis/Scripts/R/`](./Analysis/Scripts/R/)
 
-The full narrative, including charts and strategic recommendations, can be found here:
+Main file:
+- [`bellabeat_analysis_workflow.R`](./Analysis/Scripts/R/bellabeat_analysis_workflow.R)
 
-* 📄 **Executive Report (PDF):** [Report](https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Case_Study.pdf)
-* 📝 **Analysis Log (Markdown):** [Report](https://github.com/Ro98ert/Bellabeat-Case-Study/blob/32ca5f1b0bdb331fc04b8d8e05ee9ae9ff593e85/Reports/Bellabeat_Report.md)
+This script includes:
+- exploratory data analysis
+- behavioral pattern analysis
+- activity and sleep comparisons
+- chart creation for reporting
 
----
+### 3. Reports
+**Location:** [`Reports/`](./Reports/)
 
-### Data Source
-* **Dataset:** [Fitbit Fitness Tracker Data (Kaggle)](https://www.kaggle.com/arashnic/fitbit)
-* *Note: Original raw data files are not included in this repository due to size constraints. The analysis assumes raw data was loaded into a SQL environment.*
+Available reports:
+- [`Bellabeat_Case_Study.pdf`](./Reports/Bellabeat_Case_Study.pdf)
+- [`Bellabeat_Report.md`](./Reports/Bellabeat_Report.md)
+
+## Key Findings
+- Many users fall below the 10,000-step benchmark on a regular basis.
+- Sedentary time represents a large share of daily tracked activity.
+- Daily steps and calories burned show a strong positive relationship.
+- Sleep duration appears relatively stable for many users.
+- Sleep duration alone does not show a strong relationship with next-day activity.
+
+## Data Source
+- **Dataset:** [Fitbit Fitness Tracker Data (Kaggle)](https://www.kaggle.com/arashnic/fitbit)
+
+The raw data files are not included in this repository. The analysis assumes the source files were loaded into a SQL environment before processing.
+
+## Limitations
+This project uses Fitbit data from a small public sample and not Bellabeat’s own user base. The findings should be treated as directional insights rather than conclusions about Bellabeat customers specifically.
