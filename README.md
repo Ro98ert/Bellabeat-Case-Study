@@ -73,11 +73,10 @@ Available reports:
 
 ## Data Source
 - **Dataset:** [Fitbit Fitness Tracker Data (Kaggle)](https://www.kaggle.com/arashnic/fitbit)
-
-## Notes
-AI tools were used selectively for brainstorming, editing, and improving documentation clarity. All analysis logic, SQL/R workflows, interpretation, and final conclusions were reviewed and validated by me.
-
 The raw data files are not included in this repository. The analysis assumes the source files were loaded into a SQL environment before processing.
 
 ## Limitations
 This project uses Fitbit data from a small public sample and not Bellabeat’s own user base. The findings should be treated as directional insights rather than conclusions about Bellabeat customers specifically.
+
+## Notes
+AI tools were used selectively for brainstorming, editing, and improving documentation clarity. All analysis logic, SQL/R workflows, interpretation, and final conclusions were reviewed and validated by me.
