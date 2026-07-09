@@ -8,7 +8,7 @@
 # ----------------------------
 # Packages
 # ----------------------------
-packages <- c("tidyverse", "janitor", "skimr", "naniar", "lubridate")
+packages <- c("tidyverse", "janitor", "skimr", "naniar", "lubridate", "here")
 
 installed <- rownames(installed.packages())
 for (p in packages) {
@@ -20,11 +20,12 @@ library(janitor)
 library(lubridate)
 library(skimr)
 library(naniar)
+library(here)
 
 # ----------------------------
-# Data path (Desktop)
+# Data path (relative to project root; place cleaned CSVs in data_clean/ locally — not committed, see README)
 # ----------------------------
-data_path <- "../Case Study 2_ How-can-a-wellness-technology-company-play-it-smart/R_Project_local/Bellabeat/data_clean/SQL"
+data_path <- here::here("data_clean")
 
 # ----------------------------
 # Import data
