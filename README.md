@@ -23,38 +23,38 @@ The workflow includes processing daily, hourly, minute-level, and heart rate dat
 
 ### 1. SQL Processing Scripts
 
-Location: `Analysis/Scripts/SQL/`
+**Location:** [`Analysis/Scripts/SQL/`](./Analysis/Scripts/SQL/)
 
 These scripts prepare the raw Fitbit tables for analysis, including date and timestamp normalization, duplicate removal, non-wear filtering, and aggregation of second-level heart rate data.
 
 Key files:
-- 01_process_daily_activity.sql
-- 02_process_heartrate_seconds.sql
-- 03_process_hourly_calories.sql
-- 04_process_hourly_intensities.sql
-- 05_process_hourly_steps.sql
-- 06_process_minute_MET.sql
-- 07_process_minute_calories.sql
-- 08_process_minute_intensities.sql
-- 09_process_minute_sleep.sql
-- 10_process_minute_steps.sql
-- 11_process_weight_logs.sql
+- [`01_process_daily_activity.sql`](./Analysis/Scripts/SQL/01_process_daily_activity.sql)
+- [`02_process_heartrate_seconds.sql`](./Analysis/Scripts/SQL/02_process_heartrate_seconds.sql)
+- [`03_process_hourly_calories.sql`](./Analysis/Scripts/SQL/03_process_hourly_calories.sql)
+- [`04_process_hourly_intensities.sql`](./Analysis/Scripts/SQL/04_process_hourly_intensities.sql)
+- [`05_process_hourly_steps.sql`](./Analysis/Scripts/SQL/05_process_hourly_steps.sql)
+- [`06_process_minute_MET.sql`](./Analysis/Scripts/SQL/06_process_minute_MET.sql)
+- [`07_process_minute_calories.sql`](./Analysis/Scripts/SQL/07_process_minute_calories.sql)
+- [`08_process_minute_intensities.sql`](./Analysis/Scripts/SQL/08_process_minute_intensities.sql)
+- [`09_process_minute_sleep.sql`](./Analysis/Scripts/SQL/09_process_minute_sleep.sql)
+- [`10_process_minute_steps.sql`](./Analysis/Scripts/SQL/10_process_minute_steps.sql)
+- [`11_process_weight_logs.sql`](./Analysis/Scripts/SQL/11_process_weight_logs.sql)
 
 ### 2. R Analysis Workflow
 
-Location: `Analysis/Scripts/R/`
+**Location:** [`Analysis/Scripts/R/`](./Analysis/Scripts/R/)
 
-Main file: `bellabeat_analysis_workflow.R`
+Main file: [`bellabeat_analysis_workflow.R`](./Analysis/Scripts/R/bellabeat_analysis_workflow.R)
 
 This script includes exploratory data analysis, behavioral pattern analysis, activity and sleep comparisons, and chart creation for reporting.
 
 ### 3. Reports
 
-Location: `Reports/`
+**Location:** [`Reports/`](./Reports/)
 
 Available reports:
-- Bellabeat_Case_Study.pdf
-- Bellabeat_Report.md
+- [`Bellabeat_Case_Study.pdf`](./Reports/Bellabeat_Case_Study.pdf)
+- [`Bellabeat_Report.md`](./Reports/Bellabeat_Report.md)
 
 ## Key Findings
 
