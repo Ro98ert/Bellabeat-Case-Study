@@ -76,4 +76,4 @@ This project uses Fitbit data from a small public sample, not Bellabeat's own us
 
 ## Notes
 
-AI tools were used selectively for brainstorming, editing, and improving documentation clarity. All analysis logic, SQL/R workflows, interpretation, and final conclusions were reviewed and validated by me.
+The analysis, the SQL/R code and the conclusions were done by hand, without AI coding tools.
